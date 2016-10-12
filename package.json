@@ -1,6 +1,6 @@
 {
-  "name": "mozaik-ext-switcher",
-  "version": "0.2.0",
+  "name": "mozaik-ext-switch",
+  "version": "0.3.0",
   "description": "Mozaïk extension for switching between widgets within same dashboard",
   "author": "Juha Mustonen",
   "license": "MIT",
@@ -9,10 +9,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/juhamust/mozaik-ext-switcher.git"
+    "url": "http://github.com/juhamust/mozaik-ext-switch.git"
   },
   "bugs": {
-    "url": "https://github.com/juhamust/mozaik-ext-switcher/issues"
+    "url": "https://github.com/juhamust/mozaik-ext-switch/issues"
   },
   "dependencies": {
     "babel-core": "6.7.6",
