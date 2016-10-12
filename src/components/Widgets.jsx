@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 import ComponentRegistry from 'mozaik/src/browser/component-registry';
 import Widget from 'mozaik/src/browser/components/Widget.jsx';
+import classNames from 'classnames';
 
 
 class Widgets extends Component {
@@ -19,7 +20,6 @@ class Widgets extends Component {
         nextWidgetIndex = 0;
       }
 
-      console.log('Next widdget', nextWidgetIndex);
       if (this.mounted) {
         this.setState({
           widgetIndex: nextWidgetIndex
@@ -37,16 +37,27 @@ class Widgets extends Component {
   }
 
   render() {
-    const childProps = this.props.widgets[this.state.widgetIndex];
-    const { type } = this.props.widgets[this.state.widgetIndex];
-    const widget = React.createElement(ComponentRegistry.get(type), childProps);
+    // NOTE: Render all the elements to mount them: Also triggers the data fetching
+    const widgetElements = this.props.widgets.map((widgetProps, index) => {
+      const widget = React.createElement(ComponentRegistry.get(widgetProps.type), widgetProps);
+      const typeClass = widgetProps.type.replace('_', '-').replace('.', '__');
 
-    // Set class according to component type
-    const cssClass = `widget ${ type.replace('_', '-').replace('.', '__') }`;
+      let widgetClass = classNames({
+        'widget': true,
+        [typeClass]: true,
+        'switcher__widgets--hidden': this.state.widgetIndex !== index
+      });
+
+      return (
+        <div className="widget__wrapper">
+          <div className={widgetClass}>{widget}</div>
+        </div>
+      );
+    });
 
     return (
       <div className="widget__wrapper">
-        <div className={cssClass}>{widget}</div>
+        {widgetElements}
       </div>
     );
   }
