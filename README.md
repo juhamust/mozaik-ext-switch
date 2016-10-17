@@ -71,6 +71,29 @@ dashboards: [
 ]
 ```
 
+## Changelog
+
+### Release 0.4.0
+
+- Added support for switch transition
+- Using opacity instead of display none to fix widget layout issues
+
+#### Release 0.3.1
+
+- Fixed style regression due the name change
+
+#### Release 0.3.0
+
+- Renamed project to `mozaik-ext-switch`
+
+#### Release 0.2.0
+
+- Fixed the data fetching by mounting all widgets at once
+
+#### Release 0.1.0
+
+- Initial release
+
 ## License
 
 Module is MIT -licensed

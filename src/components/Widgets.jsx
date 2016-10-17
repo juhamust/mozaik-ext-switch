@@ -45,6 +45,7 @@ class Widgets extends Component {
       let widgetClass = classNames({
         'widget': true,
         [typeClass]: true,
+        'switch__widgets': true,
         'switch__widgets--hidden': this.state.widgetIndex !== index
       });
 
