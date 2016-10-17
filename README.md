@@ -1,6 +1,8 @@
 # mozaik-ext-switch
 
-Extension for [Mozaïk](http://mozaik.rocks/) that allows to place *multiple widgets* into same grid cell and *switch periodically* between them.
+Extension for [Mozaïk](http://mozaik.rocks/) that allows to place *multiple widgets* into same grid cell and *switch periodically* between them. Despite the preview shown below, it does the switch with smooth transition.
+
+![preview](https://github.com/juhamust/mozaik-ext-switch/blob/master/previews/switch.gif?raw=true "Switch preview")
 
 ## Setup
 
@@ -73,7 +75,7 @@ dashboards: [
 
 ## Changelog
 
-### Release 0.4.0
+#### Release 0.4.0
 
 - Added support for switch transition
 - Using opacity instead of display none to fix widget layout issues
