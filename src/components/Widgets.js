@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { Registry } from '@mozaik/ui/lib'
-import Widget from '@mozaik/ui/lib/components/widget/Widget.js'
+// import { Registry } from '@mozaik/ui/es'
+// import Widget from '@mozaik/ui/lib/components/widget/Widget'
 
 class Widgets extends Component {
     constructor(props) {
@@ -35,10 +35,12 @@ class Widgets extends Component {
     }
 
     render() {
+        //console.log('Registry', Registry.list(), Registry.widgetsCount());
+
         // NOTE: Render all the elements to mount them: Also triggers the data fetching
         const widgetElements = this.props.widgets.map((widgetProps, index) => {
             const widget = <div>widget {index}</div>
-            //const widget = React.createElement(Registry.getComponent.get(widgetProps.type), widgetProps);
+            //const widget = React.createElement(Registry.getComponent('github', 'OrgBadge'), widgetProps);
 
             const wrapperStyle = {}
             if (this.state.widgetIndex !== index) {
