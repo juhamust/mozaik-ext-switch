@@ -1,5 +1,5 @@
-import Widgets from './Widgets.jsx';
+import Widgets from './Widgets.js'
 
 export default {
-  Widgets
-};
+    Widgets,
+}
