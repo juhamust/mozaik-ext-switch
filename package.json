@@ -51,7 +51,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-test-renderer": "^15.6.1",
-    "styled-components": "^2.1.1"
+    "styled-components": "^2.2.4"
   },
   "peerDependencies": {
     "@mozaik/ui": "^2.0.0-alpha.11",

@@ -1,7 +1,28 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-// import { Registry } from '@mozaik/ui/es'
+import styled from 'styled-components'
+import { Registry } from '@mozaik/ui/es'
 // import Widget from '@mozaik/ui/lib/components/widget/Widget'
+
+const WidgetsElement = styled.div`
+    width: 100%;
+    height: 100%;
+    position: relative;
+`
+
+const WidgetWrapper = styled.div.attrs({
+    transitionDuration: props =>
+        props.transitionDuration ? `${props.transitionDuration}ms` : '400ms',
+})`
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition-duration: ${props => props.transitionDuration};
+    transition-property: opacity;
+`
 
 class Widgets extends Component {
     constructor(props) {
@@ -35,26 +56,26 @@ class Widgets extends Component {
     }
 
     render() {
-        //console.log('Registry', Registry.list(), Registry.widgetsCount());
-
         // NOTE: Render all the elements to mount them: Also triggers the data fetching
         const widgetElements = this.props.widgets.map((widgetProps, index) => {
-            const widget = <div>widget {index}</div>
-            //const widget = React.createElement(Registry.getComponent('github', 'OrgBadge'), widgetProps);
+            const widget = React.createElement(
+                Registry.getComponent(widgetProps.extension, widgetProps.widget),
+                widgetProps
+            )
 
             const wrapperStyle = {}
             if (this.state.widgetIndex !== index) {
-                wrapperStyle.display = 'none'
+                wrapperStyle.opacity = 0
             }
 
             return (
-                <div key={index} style={wrapperStyle}>
-                    <div>{widget}</div>
-                </div>
+                <WidgetWrapper key={index} style={wrapperStyle}>
+                    <WidgetWrapper>{widget}</WidgetWrapper>
+                </WidgetWrapper>
             )
         })
 
-        return <div>{widgetElements}</div>
+        return <WidgetsElement>{widgetElements}</WidgetsElement>
     }
 }
 
@@ -66,7 +87,8 @@ Widgets.propTypes = {
 }
 
 Widgets.defaultProps = {
-    duration: 1000,
+    duration: 2000,
+    transitionDuration: 500,
 }
 
 export default Widgets
