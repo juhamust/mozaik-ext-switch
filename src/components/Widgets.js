@@ -83,6 +83,7 @@ Widgets.displayName = 'Widgets'
 
 Widgets.propTypes = {
     widgets: PropTypes.array.isRequired,
+    transitionDuration: PropTypes.integer,
     duration: PropTypes.integer,
 }
 
