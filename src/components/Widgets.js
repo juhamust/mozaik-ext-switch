@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { Registry } from '@mozaik/ui/es'
-// import Widget from '@mozaik/ui/lib/components/widget/Widget'
+import WidgetsRegistry from '@mozaik/ui/es/WidgetsRegistry'
+import { subscribeToApi } from '@mozaik/ui/es/actions/apiActions'
+import WidgetContainer from '@mozaik/ui/es/containers/WidgetContainer'
 
 const WidgetsElement = styled.div`
     width: 100%;
@@ -56,11 +59,29 @@ class Widgets extends Component {
     }
 
     render() {
+        const { theme } = this.props
+
         // NOTE: Render all the elements to mount them: Also triggers the data fetching
         const widgetElements = this.props.widgets.map((widgetProps, index) => {
-            const widget = React.createElement(
-                Registry.getComponent(widgetProps.extension, widgetProps.widget),
-                widgetProps
+            const { extension, widget } = widgetProps
+
+            const component = Registry.getComponent(extension, widget)
+            const subscription = component.getApiRequest(widgetProps)
+
+            // Subscribe
+            this.props.dispatch(subscribeToApi(subscription))
+
+            const wrapperWidget = React.createElement(
+                WidgetContainer,
+                {
+                    registry: WidgetsRegistry,
+                    apiData: this.props.apiData,
+                    extension,
+                    widget,
+                    theme,
+                    subscriptionId: 'github.organization.ekino',
+                },
+                component
             )
 
             const wrapperStyle = {}
@@ -70,7 +91,7 @@ class Widgets extends Component {
 
             return (
                 <WidgetWrapper key={index} style={wrapperStyle}>
-                    <WidgetWrapper>{widget}</WidgetWrapper>
+                    <WidgetWrapper>{wrapperWidget}</WidgetWrapper>
                 </WidgetWrapper>
             )
         })
@@ -82,8 +103,11 @@ class Widgets extends Component {
 Widgets.displayName = 'Widgets'
 
 Widgets.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    apiData: PropTypes.object.isRequired,
     widgets: PropTypes.array.isRequired,
     duration: PropTypes.integer,
+    theme: PropTypes.object.isRequired,
 }
 
 Widgets.defaultProps = {
@@ -91,4 +115,4 @@ Widgets.defaultProps = {
     transitionDuration: 500,
 }
 
-export default Widgets
+export default connect()(Widgets)
