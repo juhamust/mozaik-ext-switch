@@ -106,6 +106,7 @@ Widgets.propTypes = {
     dispatch: PropTypes.func.isRequired,
     apiData: PropTypes.object.isRequired,
     widgets: PropTypes.array.isRequired,
+    transitionDuration: PropTypes.integer,
     duration: PropTypes.integer,
     theme: PropTypes.object.isRequired,
 }
