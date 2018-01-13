@@ -13,20 +13,6 @@ const WidgetsElement = styled.div`
     position: relative;
 `
 
-const WidgetWrapper = styled.div.attrs({
-    transitionDuration: props =>
-        props.transitionDuration ? `${props.transitionDuration}ms` : '400ms',
-})`
-    width: 100%;
-    height: 100%;
-    opacity: 1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition-duration: ${props => props.transitionDuration};
-    transition-property: opacity;
-`
-
 class Widgets extends Component {
     constructor(props) {
         super(props)
@@ -59,7 +45,17 @@ class Widgets extends Component {
     }
 
     render() {
-        const { theme } = this.props
+        const { theme, transitionDuration } = this.props
+        const WidgetWrapper = styled.div`
+            width: 100%;
+            height: 100%;
+            opacity: 1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition-duration: ${transitionDuration ? `${transitionDuration}ms` : '400ms'};
+            transition-property: opacity;
+        `
 
         // NOTE: Render all the elements to mount them: Also triggers the data fetching
         const widgetElements = this.props.widgets.map((widgetProps, index) => {
@@ -107,8 +103,8 @@ Widgets.propTypes = {
     dispatch: PropTypes.func.isRequired,
     apiData: PropTypes.object,
     widgets: PropTypes.array.isRequired,
-    transitionDuration: PropTypes.integer,
-    duration: PropTypes.integer,
+    transitionDuration: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
+    duration: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
     theme: PropTypes.object.isRequired,
 }
 
