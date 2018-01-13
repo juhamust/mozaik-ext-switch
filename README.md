@@ -13,7 +13,8 @@ Extension for [Mozaïk](http://mozaik.rocks/) that allows to place *multiple wid
     ```
 
 - Register extension in dashboard `src/register_extensions.js`
-  ```
+  ```javascript
+  // Import extension
   import switcher from 'mozaik-ext-switch'
 
   Registry.addExtensions({
@@ -43,7 +44,7 @@ key                 | required | description
 
 Create `switch.widgets` widget and place widgets within `widgets` parameter:
 
-```javascript
+```yml
 dashboards:
 - columns: 1
   rows:    1
