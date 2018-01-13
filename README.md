@@ -12,8 +12,20 @@ Extension for [Mozaïk](http://mozaik.rocks/) that allows to place *multiple wid
     npm install --save mozaik-ext-switch
     ```
 
-- Rebuild dasbboard: `npm run build-assets`
-- Configure widgets in dashboard ``config.js`` (see usage)
+- Register extension in dashboard `src/register_extensions.js`
+  ```
+  import switcher from 'mozaik-ext-switch'
+
+  Registry.addExtensions({
+    github,
+    gitlab,
+    time,
+    travis,
+    switch: switcher, // <-- Add here
+  })
+  ```
+- Rebuild dasbboard: `yarn build`
+- Configure widgets in dashboard ``config.yml`` (see usage)
 - Done.
 
 ## Widget: Widgets
@@ -22,58 +34,49 @@ Switch between widgets
 
 ### parameters
 
-key           | required | description
---------------|----------|---------------
-`duration`    | no       | *Duration how long to show each widget. Defaults to 8000*
+key                 | required | description
+--------------------|----------|---------------
+`duration`          | no       | *Duration how long to show each widget. Defaults to 5000*
+`transitionDuration`| no       | *Duration how long it takes to tranform between widgets. Keep shorter than duration. Defaults to 500*
 
 ### usage
 
 Create `switch.widgets` widget and place widgets within `widgets` parameter:
 
 ```javascript
-dashboards: [
-  // First dashboard view
-  {
-    columns: 1,
-    rows: 1,
-    widgets: [
-      // 1st row
-      {
-        type: 'switch.widgets',
-        columns: 1, rows: 1,
-        x: 0, y: 0,
-        // Duration how long to show each widget
-        duration: 8000,
-        // Structure within widgets is same normally
-        // with widgets. Naturally the size and placement
-        // comes from switch.widgets
-        widgets: [
-          {
-            type: 'time.clock',
-            timezone: 'America/Los_Angeles',
-            info: 'date',
-            title: 'Los Angeles'
-          },
-          {
-            type: 'weather.weather',
-            city: 'Helsinki',
-            country: 'FI',
-            lang: 'en',
-          },
-          {
-            type: 'time.clock',
-            info: 'time',
-            timezone: 'Asia/Tokyo',
-            title: 'Tokyo'
-          }
-        ]
-      }
-    ]
-  }
-]
+dashboards:
+- columns: 1
+  rows:    1
+  title:   Simple
+  widgets:
+  -
+    extension:    switch
+    widget:       Widgets
+    columns:      1
+    rows:         1
+    x:            0
+    y:            0
+    widgets:
+    -
+      extension:    github
+      widget:       OrgBadge
+      organization: ekino
+      columns:      1
+      rows:         1
+    -
+      extension:    github
+      widget:       OrgBadge
+      organization: juhamust
+      columns:      1
+      rows:         1
 ```
 
 ## Changelog
+
+#### Release 1.0.0-dev
+
+- Compatible with [Mozaik 2.x](http://mozaik.rocks/)
+- Added support for providing transition duration
 
 #### Release 0.4.0
 
