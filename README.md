@@ -38,8 +38,8 @@ Switch between widgets
 
 key                 | required | description
 --------------------|----------|---------------
-`duration`          | no       | *Duration how long to show each widget. Defaults to 5000*
-`transitionDuration`| no       | *Duration how long it takes to tranform between widgets. Keep shorter than duration. Defaults to 500*
+`duration`          | no       | *Duration how long to show each widget in milliseconds. Defaults to 5000*
+`transitionDuration`| no       | *Duration how long it takes to tranform between widgets in milliseconds. Keep shorter than duration. Defaults to 500*
 
 ### usage
 
