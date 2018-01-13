@@ -22,7 +22,8 @@ Extension for [Mozaïk](http://mozaik.rocks/) that allows to place *multiple wid
     gitlab,
     time,
     travis,
-    switch: switcher, // <-- Add here
+    // Add into extension with name 'switch'
+    switch: switcher,
   })
   ```
 - Rebuild dasbboard: `yarn build`
