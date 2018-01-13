@@ -64,22 +64,23 @@ class Widgets extends Component {
         // NOTE: Render all the elements to mount them: Also triggers the data fetching
         const widgetElements = this.props.widgets.map((widgetProps, index) => {
             const { extension, widget } = widgetProps
-
             const component = Registry.getComponent(extension, widget)
-            const subscription = component.getApiRequest(widgetProps)
 
-            // Subscribe
-            this.props.dispatch(subscribeToApi(subscription))
+            // Subscribe to apiData
+            let subscription = null
+            if (typeof component.getApiRequest === 'function') {
+                subscription = component.getApiRequest(widgetProps)
+                this.props.dispatch(subscribeToApi(subscription))
+            }
 
             const wrapperWidget = React.createElement(
                 WidgetContainer,
                 {
                     registry: WidgetsRegistry,
-                    apiData: this.props.apiData,
                     extension,
                     widget,
                     theme,
-                    subscriptionId: 'github.organization.ekino',
+                    subscriptionId: subscription && subscription.id,
                 },
                 component
             )
@@ -104,7 +105,7 @@ Widgets.displayName = 'Widgets'
 
 Widgets.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    apiData: PropTypes.object.isRequired,
+    apiData: PropTypes.object,
     widgets: PropTypes.array.isRequired,
     transitionDuration: PropTypes.integer,
     duration: PropTypes.integer,
