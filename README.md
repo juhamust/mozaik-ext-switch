@@ -80,6 +80,11 @@ dashboards:
 - Compatible with [Mozaik 2.x](http://mozaik.rocks/)
 - Added support for setting transition duration
 
+#### Release 1.0.0
+
+- First stable release
+- No changes since prev version
+
 #### Release 0.4.0
 
 - Added support for switch transition
