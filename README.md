@@ -75,10 +75,10 @@ dashboards:
 
 ## Changelog
 
-#### Release 1.0.0-dev
+#### Release 2.0.0-dev
 
 - Compatible with [Mozaik 2.x](http://mozaik.rocks/)
-- Added support for providing transition duration
+- Added support for setting transition duration
 
 #### Release 0.4.0
 
