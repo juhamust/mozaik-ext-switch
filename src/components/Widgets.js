@@ -13,6 +13,18 @@ const WidgetsElement = styled.div`
     position: relative;
 `
 
+const WidgetWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition-duration: ${props =>
+        props.transitionDuration ? `${props.transitionDuration}ms` : '500ms'};
+    transition-property: opacity;
+`
+
 class Widgets extends Component {
     constructor(props) {
         super(props)
@@ -45,17 +57,7 @@ class Widgets extends Component {
     }
 
     render() {
-        const { theme, transitionDuration } = this.props
-        const WidgetWrapper = styled.div`
-            width: 100%;
-            height: 100%;
-            opacity: 1;
-            position: absolute;
-            top: 0;
-            left: 0;
-            transition-duration: ${transitionDuration ? `${transitionDuration}ms` : '400ms'};
-            transition-property: opacity;
-        `
+        const { theme } = this.props
 
         // NOTE: Render all the elements to mount them: Also triggers the data fetching
         const widgetElements = this.props.widgets.map((widgetProps, index) => {
