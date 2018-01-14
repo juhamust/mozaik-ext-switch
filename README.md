@@ -75,6 +75,11 @@ dashboards: [
 
 ## Changelog
 
+#### Release 1.0.0
+
+- First stable release
+- No changes since prev version
+
 #### Release 0.4.0
 
 - Added support for switch transition

@@ -1,6 +1,6 @@
 {
   "name": "mozaik-ext-switch",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "Mozaïk extension for switching between widgets within same dashboard",
   "author": "Juha Mustonen",
   "license": "MIT",
