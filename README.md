@@ -11,9 +11,22 @@ Extension for [Mozaïk](http://mozaik.rocks/) that allows to place *multiple wid
     ```bash
     npm install --save mozaik-ext-switch
     ```
+- Register extension in dashboard `src/App.jsx`
+  ```javascript
+  // Import extension
+  import switcher from 'mozaik-ext-switch'
 
+  Registry.addExtensions({
+    github,
+    gitlab,
+    time,
+    travis,
+    // Add into extension with name 'switch'
+    switch: switcher,
+  })
+  ```
 - Rebuild dasbboard: `npm run build-assets`
-- Configure widgets in dashboard ``config.js`` (see usage)
+- Configure widgets in dashboard `config.js` (see usage)
 - Done.
 
 ## Widget: Widgets
